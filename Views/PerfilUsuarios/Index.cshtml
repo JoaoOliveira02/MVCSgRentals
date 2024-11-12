@@ -1,0 +1,48 @@
+﻿@model IEnumerable<GerenciadorDeEmpresaWEB.Models.PerfilUsuarioViewModel>
+
+@{
+    ViewData["Title"] = "Perfil de Usuarios";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<hr />
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="pull-left">
+            <a asp-action="Create" class="btn btn-primary">
+                <span title="Criar Perfil de Usuario" class="fas fa-plus"></span> Adicionar Perfil de Usuario
+            </a>
+
+        </div>
+    </div>
+</div>
+
+<br />
+
+<div class="panel panel-default">
+    <table class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome </th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var perfilUsuario in Model)
+            {
+                <tr>
+                    <td>@perfilUsuario.Id</td>
+                    <td>@perfilUsuario.Nome</td>
+                    <td>
+                        <a href="@Url.Action("Edit", "PerfilUsuarios", new { id = perfilUsuario.Id })" class="btn btn-warning btn-sm">Editar</a>
+                        <a href="@Url.Action("Details", "PerfilUsuarios", new { id = perfilUsuario.Id })" class="btn btn-info btn-sm">Detalhes</a>
+                            <a href="@Url.Action("Delete", "PerfilUsuarios", new { id = perfilUsuario.Id })" class="btn btn-danger btn-sm">Excluir</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

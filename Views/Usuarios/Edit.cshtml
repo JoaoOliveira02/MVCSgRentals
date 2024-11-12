@@ -1,0 +1,68 @@
+﻿@model GerenciadorDeEmpresaWEB.Models.UsuarioViewModel
+
+@{
+    ViewData["Title"] = "Editar Usuário";
+}
+
+<h2>@ViewData["Title"] - @Model.Nome</h2>
+
+<div class="card mt-4">
+    <div class="card-header">
+        <h4>Alterar Dados do Usuário</h4>
+    </div>
+    <div class="card-body">
+        <form asp-action="Edit" method="post">
+            <div asp-validation-summary="All" class="text-danger mb-3"></div>
+
+            <div class="form-group">
+                <label for="Nome">Nome</label>
+                <input asp-for="Nome" class="form-control" id="Nome" />
+                <span asp-validation-for="Nome" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="CPF">CPF</label>
+                <input asp-for="CPF" class="form-control" maxlength="14" id="CPF" />
+                <span asp-validation-for="CPF" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="PerfilUsuarioId">Perfil de Usuário</label>
+                <select asp-for="PerfilUsuarioId" asp-items="ViewBag.PerfilUsuarios" class="form-control">
+                    <option value=""> ---Selecione um Perfil de Usuário--- </option>
+                </select>
+                <span asp-validation-for="PerfilUsuarioId" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="EmpresaId">Empresa</label>
+                <select asp-for="EmpresaId" asp-items="ViewBag.Empresas" class="form-control">
+                    <option value=""> ---Selecione uma Empresa--- </option>
+                </select>
+                <span asp-validation-for="EmpresaId" class="text-danger"></span>
+            </div>
+
+            <div class="d-flex justify-content-between mt-4">
+                <button type="submit" class="btn btn-success">Salvar</button>
+                <a asp-action="Index" class="btn btn-secondary">Voltar</a>
+            </div>
+        </form>
+    </div>
+</div>
+@section Scripts {
+    <script>
+        document.getElementById('CPF').addEventListener('input', function (e) {
+            let value = e.target.value.replace(/\D/g, ''); // Remove qualquer coisa que não seja número
+
+            if (value.length <= 3) {
+                e.target.value = value;
+            } else if (value.length <= 6) {
+                e.target.value = value.slice(0, 3) + '.' + value.slice(3);
+            } else if (value.length <= 9) {
+                e.target.value = value.slice(0, 3) + '.' + value.slice(3, 6) + '.' + value.slice(6);
+            } else {
+                e.target.value = value.slice(0, 3) + '.' + value.slice(3, 6) + '.' + value.slice(6, 9) + '-' + value.slice(9, 11);
+            }
+        });
+    </script>
+}

@@ -1,0 +1,28 @@
+﻿@model GerenciadorDeEmpresaWEB.Models.UsuarioViewModel
+
+@{
+    ViewData["Title"] = "Detalhes do Usuario";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<div class="card mt-4">
+    <div class="card-header">
+        <h4>Informações do Usuario</h4>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-6">
+                <p><strong>Nome:</strong> @Model.Nome</p>
+                <p><strong>CPF:</strong> @Model.CPF</p>
+                <p><strong>Perfil do Usuario:</strong> @Model.PerfilUsuarioNome</p>
+                <p><strong>Empresa:</strong> @Model.EmpresaNome</p>
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-between mt-4">
+            <a href="@Url.Action("Edit", new { id = Model.Id })" class="btn btn-primary">Editar</a>
+            <a href="@Url.Action("Index")" class="btn btn-secondary">Voltar</a>
+        </div>
+    </div>
+</div>

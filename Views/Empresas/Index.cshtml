@@ -1,0 +1,54 @@
+﻿@model IEnumerable<GerenciadorDeEmpresaWEB.Models.EmpresaViewModel>
+
+@{
+    ViewData["Title"] = "Empresas";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<hr />
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="pull-left">
+            <a asp-action="Create" class="btn btn-primary">
+                <span title="Criar Empresa" class="fas fa-plus"></span> Adicionar Nova Empresa
+            </a>
+
+        </div>
+    </div>
+</div>
+
+<br />
+
+<div class="panel panel-default">
+    <table class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome Fantasia</th>
+                <th>Razão Social</th>
+                <th>CNPJ</th>
+                <th>Endereço</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var empresa in Model)
+            {
+                <tr>
+                    <td>@empresa.Id</td>
+                    <td>@empresa.NomeFantasia</td>
+                    <td>@empresa.RazaoSocial</td>
+                    <td>@empresa.CNPJ</td>
+                    <td>@empresa.Endereco</td>
+                    <td>
+                        <a href="@Url.Action("Edit", "Empresas", new { id = empresa.Id })" class="btn btn-warning btn-sm">Editar</a>
+                        <a href="@Url.Action("Details", "Empresas", new { id = empresa.Id })" class="btn btn-info btn-sm">Detalhes</a>
+                        <a href="@Url.Action("Delete", "Empresas", new { id = empresa.Id })" class="btn btn-danger btn-sm">Excluir</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

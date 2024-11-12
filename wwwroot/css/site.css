@@ -1,0 +1,78 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+.conteudo{
+    overflow : hidden;
+}
+.navbar-dark .navbar-nav .nav-link {
+    margin-right: 25px;
+}
+
+/* Exibe o dropdown quando passar o mouse */
+.nav-item.dropdown:hover .dropdown-menu {
+    display: block;
+    margin-top: 0; /* Remove a margem extra para evitar o espaço entre o item e o menu */
+}
+
+/* Previne que o menu dropdown se feche ao passar o mouse */
+.nav-item.dropdown:hover .nav-link {
+    color: #ddd; /* Cor do texto quando passar o mouse */
+}
+
+/* Corrige o comportamento da seta do dropdown (para apontar para baixo) */
+.nav-item.dropdown:hover .dropdown-toggle::after {
+    transform: rotate(180deg);
+}
+
+/* Adiciona uma transição suave */
+.dropdown-menu {
+    display: none;
+    transition: all 0.3s ease-in-out; /* Suaviza a transição do menu */
+}
+
+/* Estilo de fundo do dropdown */
+.navbar-dark .dropdown-menu {
+    background-color: #333; /* Cor de fundo do menu dropdown */
+}
+
+/* Cor do texto nos itens do dropdown */
+.navbar-dark .dropdown-item {
+    color: white; /* Cor do texto dentro do dropdown */
+}
+
+/* Muda a cor dos itens no hover */
+.navbar-dark .dropdown-item:hover {
+    background-color: #555; /* Cor de fundo do item quando o mouse passa por cima */
+}
+
+.footer {
+    border-top: 1px solid #555; /* Borda mais sutil para combinar com o tema dark */
+}
+
+    .footer a {
+        text-decoration: none; /* Remove sublinhado do link */
+    }
+
+        .footer a:hover {
+            text-decoration: underline; /* Adiciona sublinhado no hover para destacar */
+        }

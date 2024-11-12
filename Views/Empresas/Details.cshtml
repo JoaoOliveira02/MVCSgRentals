@@ -1,0 +1,31 @@
+﻿@model GerenciadorDeEmpresaWEB.Models.EmpresaViewModel
+
+@{
+    ViewData["Title"] = "Detalhes da Empresa";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<div class="card mt-4">
+    <div class="card-header">
+        <h4>Informações da Empresa</h4>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-6">
+                <p><strong>Nome Fantasia:</strong> @Model.NomeFantasia</p>
+                <p><strong>Razão Social:</strong> @Model.RazaoSocial</p>
+                <p><strong>CNPJ:</strong> @Model.CNPJ</p>
+            </div>
+            <div class="col-md-6">
+                <p><strong>Endereço:</strong> @Model.Endereco</p>
+                <p><strong>Tipo de Empresa:</strong> @Model.TipoEmpresaNome</p>
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-between mt-4">
+            <a href="@Url.Action("Edit", new { id = Model.Id })" class="btn btn-primary">Editar</a>
+            <a href="@Url.Action("Index")" class="btn btn-secondary">Voltar</a>
+        </div>
+    </div>
+</div>

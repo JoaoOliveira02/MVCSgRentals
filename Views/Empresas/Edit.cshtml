@@ -1,0 +1,76 @@
+﻿@model GerenciadorDeEmpresaWEB.Models.EmpresaViewModel
+
+@{
+    ViewData["Title"] = "Editar Empresa";
+}
+
+<h2>@ViewData["Title"] - @Model.NomeFantasia</h2>
+
+<div class="card mt-4">
+    <div class="card-header">
+        <h4>Alterar Dados da Empresa</h4>
+    </div>
+    <div class="card-body">
+        <form asp-action="Edit" method="post">
+            <div asp-validation-summary="All" class="text-danger mb-3"></div>
+
+            <div class="form-group">
+                <label for="NomeFantasia">Nome Fantasia</label>
+                <input asp-for="NomeFantasia" class="form-control" id="NomeFantasia" />
+                <span asp-validation-for="NomeFantasia" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="RazaoSocial">Razão Social</label>
+                <input asp-for="RazaoSocial" class="form-control" id="RazaoSocial" />
+                <span asp-validation-for="RazaoSocial" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="CNPJ">CNPJ</label>
+                <input asp-for="CNPJ" class="form-control" maxlength="18" id="CNPJ" />
+                <span asp-validation-for="CNPJ" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="Endereco">Endereço</label>
+                <input asp-for="Endereco" class="form-control" id="Endereco" />
+                <span asp-validation-for="Endereco" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="TipoEmpresa">Tipo da Empresa</label>
+                <select asp-for="TipoEmpresaId" asp-items="ViewBag.TipoEmpresas" class="form-control">
+                    <option value=""> ---Selecione um Tipo de Empresa--- </option>
+                </select>
+                <span asp-validation-for="TipoEmpresaId" class="text-danger"></span>
+            </div>
+
+            <div class="d-flex justify-content-between mt-4">
+                <button type="submit" class="btn btn-success">Salvar</button>
+                <a asp-action="Index" class="btn btn-secondary">Voltar</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        document.getElementById('CNPJ').addEventListener('input', function (e) {
+            let value = e.target.value.replace(/\D/g, ''); // Remove qualquer coisa que não seja número
+
+            if (value.length <= 2) {
+                e.target.value = value;
+            } else if (value.length <= 5) {
+                e.target.value = value.slice(0, 2) + '.' + value.slice(2);
+            } else if (value.length <= 8) {
+                e.target.value = value.slice(0, 2) + '.' + value.slice(2, 5) + '.' + value.slice(5);
+            } else if (value.length <= 12) {
+                e.target.value = value.slice(0, 2) + '.' + value.slice(2, 5) + '.' + value.slice(5, 8) + '/' + value.slice(8);
+            } else {
+                e.target.value = value.slice(0, 2) + '.' + value.slice(2, 5) + '.' + value.slice(5, 8) + '/' + value.slice(8, 12) + '-' + value.slice(12, 14);
+            }
+        });
+    </script>
+}
+

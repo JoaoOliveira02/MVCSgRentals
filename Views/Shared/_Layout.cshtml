@@ -1,0 +1,117 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - GerenciadorDeEmpresaWEB</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.dataTables.css" />
+
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/GerenciadorDeEmpresaWEB.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-dark bg-dark border-bottom box-shadow mb-3">
+            <div class="container-fluid">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">GerenciadorDeEmpresaWEB</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <!-- Home Dropdown -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-light" id="navbarHomeDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Home
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarHomeDropdown">
+                                <li><a class="dropdown-item" asp-area="" asp-controller="Home" asp-action="Index">Página Inicial</a></li>
+                            </ul>
+                        </li>
+
+                        <!-- Empresas Dropdown -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-light" id="navbarEmpresasDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Empresas
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarEmpresasDropdown">
+                                <li><a class="dropdown-item" asp-area="" asp-controller="Empresas" asp-action="Index">Ver Empresas</a></li>                                <li><a class="dropdown-item" asp-area="" asp-controller="Empresas" asp-action="Create">Adicionar Empresa</a></li>
+                            </ul>
+                        </li>
+
+                        <!-- Usuarios Dropdown -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-light" id="navbarUsuariosDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Usuários
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarUsuariosDropdown">
+                                <li><a class="dropdown-item" asp-area="" asp-controller="Usuarios" asp-action="Index">Ver Usuários</a></li>
+                                <li><a class="dropdown-item" asp-area="" asp-controller="Usuarios" asp-action="Index1">Ver Usuários Por Empresa</a></li>
+                                <li><a class="dropdown-item" asp-area="" asp-controller="Usuarios" asp-action="Index2">Ver Usuários Por Tipo de Perfil</a></li>
+                                <li><a class="dropdown-item" asp-area="" asp-controller="Usuarios" asp-action="Create">Adicionar Usuário</a></li>
+                            </ul>
+                        </li>
+
+                        <!-- Tipos de Empresas Dropdown -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-light" id="navbarTipoEmpresasDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Tipos de Empresas
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarTipoEmpresasDropdown">
+                                <li><a class="dropdown-item" asp-area="" asp-controller="TipoEmpresas" asp-action="Index">Ver Tipos de Empresas</a></li>
+                            </ul>
+                        </li>
+
+                        <!-- Perfil de Usuários Dropdown -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-light" id="navbarPerfilUsuariosDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Perfil de Usuários
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarPerfilUsuariosDropdown">
+                                <li><a class="dropdown-item" asp-area="" asp-controller="PerfilUsuarios" asp-action="Index">Ver Perfis</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+
+    <div class="conteudo container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="footer bg-dark text-light py-1 mt-auto">
+        <div class=" container text-center">
+            <span>&copy; 2024 - GerenciadorDeEmpresaWEB</span> |
+            <a class="text-light" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- jQuery (CDN) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- DataTables JS -->
+    <script src="https://cdn.datatables.net/2.1.8/js/dataTables.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

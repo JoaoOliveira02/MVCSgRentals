@@ -1,0 +1,18 @@
+﻿@model GerenciadorDeEmpresaWEB.Models.PerfilUsuarioViewModel
+
+@{
+    ViewData["Title"] = "Criar Novo Perfil Usuario";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<form asp-action="Create" method="post">
+    <div class="form-group">
+         <label for="Nome">Nome </label>
+        <input asp-for="Nome" class="form-control" />
+        <span asp-validation-for="Nome" class="text-danger"></span>
+    </div>
+    <input type="submit" value="Criar" class="btn btn-success" />
+    <a asp-action="Index" class="btn btn-secondary">Retornar</a>
+
+</form>

@@ -1,0 +1,40 @@
+﻿@model IEnumerable<GerenciadorDeEmpresaWEB.Models.UsuarioViewModel>
+
+@{
+    ViewData["Title"] = "Pesquisar Usuários por Perfil";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<hr />
+
+<!-- Formulário para selecionar o perfil -->
+<form method="post" asp-action="Index2Result">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="perfilId">Perfil</label>
+                <select id="perfilId" name="perfilId" class="form-control">
+                    <option value="">Selecione um perfil</option>
+                    @foreach (var perfil in ViewData["Perfil"] as SelectList)
+                    {
+                        <option value="@perfil.Value">@perfil.Text</option>
+                    }
+                </select>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <button type="submit" class="btn btn-primary" style="margin-top: 25px;">Exibir Usuários</button>
+        </div>
+    </div>
+</form>
+
+<hr />
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('#tabela').DataTable();
+        });
+    </script>
+}

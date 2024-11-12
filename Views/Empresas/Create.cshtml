@@ -1,0 +1,60 @@
+﻿@model GerenciadorDeEmpresaWEB.Models.EmpresaViewModel
+
+@{
+    ViewData["Title"] = "Criar Nova Empresa";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<form asp-action="Create" method="post">
+    <div class="form-group">
+        <label for="NomeFantasia">Nome Fantasia</label>
+        <input asp-for="NomeFantasia" class="form-control" id="NomeFantasia" />
+        <span asp-validation-for="NomeFantasia" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label for="RazaoSocial">Razão Social</label>
+        <input asp-for="RazaoSocial" class="form-control" id="RazaoSocial" />
+        <span asp-validation-for="RazaoSocial" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label for="CNPJ">CNPJ</label>
+        <input asp-for="CNPJ" class="form-control" id="CNPJ" maxlength="18" />
+        <span asp-validation-for="CNPJ" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label for="Endereco">Endereço</label>
+        <input asp-for="Endereco" class="form-control" id="Endereco" />
+        <span asp-validation-for="Endereco" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label for="TipoEmpresa">Tipo da Empresa</label>
+        <select asp-for="TipoEmpresaId" asp-items="ViewBag.TipoEmpresas" class="form-control" >
+            <option value=""> ---Selecione um Tipo de Empresa--- </option>
+        </select>
+        <span asp-validation-for="TipoEmpresaId" class="text-danger"></span>
+    </div>
+
+    <input type="submit" value="Criar" class="btn btn-success" />
+    <a asp-action="Index" class="btn btn-secondary">Retornar</a>
+
+</form>
+@section Scripts {
+    <script>
+        document.getElementById('CNPJ').addEventListener('input', function (e) {
+            let value = e.target.value.replace(/\D/g, ''); // Remove qualquer coisa que não seja número
+
+            if (value.length <= 2) {
+                e.target.value = value;
+            } else if (value.length <= 5) {
+                e.target.value = value.slice(0, 2) + '.' + value.slice(2);
+            } else if (value.length <= 8) {
+                e.target.value = value.slice(0, 2) + '.' + value.slice(2, 5) + '.' + value.slice(5);
+            } else if (value.length <= 12) {
+                e.target.value = value.slice(0, 2) + '.' + value.slice(2, 5) + '.' + value.slice(5, 8) + '/' + value.slice(8);
+            } else {
+                e.target.value = value.slice(0, 2) + '.' + value.slice(2, 5) + '.' + value.slice(5, 8) + '/' + value.slice(8, 12) + '-' + value.slice(12, 14);
+            }
+        });
+    </script>
+}

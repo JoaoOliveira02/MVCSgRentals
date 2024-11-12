@@ -1,0 +1,42 @@
+﻿@model IEnumerable<GerenciadorDeEmpresaWEB.Models.UsuarioViewModel>
+
+@{
+    ViewData["Title"] = "Pesquisar Usuários por Empresa";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<hr />
+
+<!-- Formulário para selecionar a empresa -->
+<form method="post" asp-action="Index1Result">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="empresaId">Empresa</label>
+                <select id="empresaId" name="empresaId" class="form-control">
+                    <option value="">Selecione uma empresa</option>
+                    @foreach (var empresa in ViewData["Empresas"] as SelectList)
+                    {
+                        <option value="@empresa.Value">@empresa.Text</option>
+                    }
+                </select>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <button type="submit" class="btn btn-primary" style="margin-top: 25px;">Exibir Usuários</button>
+        </div>
+    </div>
+</form>
+
+<hr />
+
+
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('#tabela').DataTable();
+        });
+    </script>
+}

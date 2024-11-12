@@ -1,0 +1,72 @@
+﻿@model IEnumerable<GerenciadorDeEmpresaWEB.Models.UsuarioViewModel>
+
+@{
+    ViewData["Title"] = "Usuarios";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<hr />
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="pull-left">
+            <a asp-action="Create" class="btn btn-primary">
+                <span title="Criar Usuario" class="fas fa-plus"></span> Adicionar Usuario
+            </a>
+
+        </div>
+    </div>
+</div>
+
+<br />
+
+<div class="panel panel-default">
+    <table class="table table-striped table-bordered tabela" id="tabela">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome </th>
+                <th>CPF</th>
+                <th>Perfil do Usuario</th>
+                <th>Empresa</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model == null || !Model.Any())
+            {
+                <tr>
+                    <td colspan="6" class="text-center">Nenhum usuário encontrado.</td>
+                </tr>
+            }
+            else
+            {
+                @foreach (var usuario in Model)
+                {
+                    <tr>
+                        <td>@usuario.Id</td>
+                        <td>@usuario.Nome</td>
+                        <td>@usuario.CPF</td>
+                        <td>@usuario.PerfilUsuarioNome</td>
+                        <td>@usuario.EmpresaNome</td>
+                        <td>
+                            <a href="@Url.Action("Edit", "Usuarios", new { id = usuario.Id })" class="btn btn-warning btn-sm">Editar</a>
+                            <a href="@Url.Action("Details", "Usuarios", new { id = usuario.Id })" class="btn btn-info btn-sm">Detalhes</a>
+                            <a href="@Url.Action("Delete", "Usuarios", new { id = usuario.Id })" class="btn btn-danger btn-sm">Excluir</a>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
+@section Scripts {
+  
+    <script>
+        $(document).ready(function () {
+            $('#tabela').DataTable();
+        });
+    </script>
+
+}
